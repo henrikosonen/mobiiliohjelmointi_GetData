@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm= (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //ONCLICK METODISSA
+        //ajeteaan
         //GOOGLEN LUOKKAKIRJASTO GSON serialisointiin ja deserialisointiin
 
         button.setOnClickListener(new View.OnClickListener() {
