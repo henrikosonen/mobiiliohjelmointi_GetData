@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue queue;
     ArrayList<JSONObject> data;
+    String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         data = new ArrayList<JSONObject>();
         queue = Volley.newRequestQueue(this);
-        String url = "https://webd.savonia.fi/home/ktkoiju/j2me/test_json.php?dates&delay=1";
+        url = "https://webd.savonia.fi/home/ktkoiju/j2me/test_json.php?dates&delay=1";
 
 
         final Adapter adapter = new Adapter(this, R.layout.row, data);
@@ -51,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNetworkAvailable()) {
+                if (isInternetAvailable()) {
                     parse(adapter);
                 }
                 else
                 {
                     Context context = getApplicationContext();
-                    CharSequence text = "Connection not avaible";
+                    CharSequence text = "Eipä ollunna yhteyttä";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
         public void parse(final Adapter adapter) {
-            url = "https://webd.savonia.fi/home/ktkoiju/j2me/test_json.php?dates&delay=1";
 
             JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                 @Override
